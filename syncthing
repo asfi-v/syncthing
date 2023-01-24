@@ -1,0 +1,19 @@
+-
+version: "2.1"
+services:
+  syncthing:
+    image: ghcr.io/linuxserver/syncthing
+    container_name: syncthing
+    hostname: syncthing #optional
+    environment:
+      - PUID=1000                                     #User Admin's
+      - PGID=100                                      #User Admin's
+      - TZ=India/Kolkata
+    volumes:
+      - syncthing/AppFiles/syncthing/config:/config     #Change 'syncthing' to your external drive volume if available
+      - syncthing/BKP:/BKP                              #Change 'syncthing' to your external drive volume if available
+    ports:
+      - 8384:8384
+      - 22000:22000
+      - 21027:21027/udp
+    restart: unless-stopped
